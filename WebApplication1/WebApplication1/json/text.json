@@ -1,0 +1,1 @@
+{"1":{"$id":"1","Id":1,"Description":"Autobuss","Price":3211.42,"Availability":true,"ImagePath":"<img alt=Autobuss height=100 src=/images/1.jpg>","Vendor":{"$id":"2","ProductList":[{"$ref":"1"}],"ID":1,"Name":"v1","IsActive":true}}}

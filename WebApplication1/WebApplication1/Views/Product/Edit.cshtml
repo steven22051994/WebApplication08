@@ -1,0 +1,47 @@
+﻿@model WebApplication1.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form action="/product/editpost" method="get">
+    <table>
+
+        <tr>
+            <td>
+                Beschreibung
+            </td>
+            <td>
+                <input type="text" name="description" value="@Model.Description" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Preis
+            </td>
+            <td>
+
+                @*Convertiert das Atribut zu einem HTML-encoding String*@
+                <input type="text" name="price" value="@Html.AttributeEncode(Model.Price)" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Verfügbarkeit
+            </td>
+            <td>
+                <input name="availability" type="checkbox" checked="@Model.Availability" value="true" />
+                @*<input type="hidden" name="availability" value="false" />*@
+            </td>
+        </tr>
+    </table>
+
+    <input type="hidden" name="id" value="@Model.Id" />
+
+
+
+    <input type="submit" />
+</form>
+

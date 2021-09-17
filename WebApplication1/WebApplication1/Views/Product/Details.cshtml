@@ -1,0 +1,44 @@
+﻿@model WebApplication1.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<table class="table table-striped">
+    <tr>
+        <td>
+            @Html.Raw(Model.ImagePath)
+        </td>
+        <td width="150">
+        </td>
+    </tr>
+    <tr>
+
+        <td>Id: </td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td>Beschreibung: </td>
+        <td> @Model.Description</td>
+    </tr>
+    <tr>
+        <td>Preis </td>
+        <td>@Model.Price</td>
+    </tr>
+    <tr>
+        <td>Verfügbarkeit:</td>
+        <td>@Html.CheckBox("isActive", Model.Availability)</td>
+    </tr>
+    <tr>
+        <td>
+            Vendor
+        </td>
+        <td>
+            @ViewBag.Vendor.Name
+        </td>
+    </tr>
+
+</table>
+

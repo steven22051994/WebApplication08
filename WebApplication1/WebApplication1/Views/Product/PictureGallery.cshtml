@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebApplication1.Models.Product>
+
+<h2>PictureGallery</h2>
+@{
+    int zaehler = 0;
+}
+<table>
+
+    <tr>
+        @foreach (var item in Model)
+        {
+            <td>
+                <a href="/product/details?id=@item.Id">
+                    @Html.Raw(item.ImagePath)
+                </a>
+            </td>
+            <td width="50"></td>
+            zaehler++;
+            if (zaehler % 6 == 0)
+            {
+                @Html.Raw("</tr>")
+            }
+            if (zaehler % 3 == 0)
+            {
+                @Html.Raw("<tr>")
+            }
+        }
+    </tr>
+</table>
+

@@ -1,0 +1,80 @@
+﻿
+@model IEnumerable<WebApplication1.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<h2>Index</h2>
+<br />
+<a href="/product/create">Neues Produkt erstellen</a>
+<br />
+
+<div>
+    <h1></h1>
+    
+    <hr /><br />
+    <a href="/product/index?filter=availabilityTrue&field=@ViewBag.field&orderby=@ViewBag.orderby">nur Verfügbare</a>
+    <a href="/product/index?filter=availabilityFalse&field=@ViewBag.field&orderby=@ViewBag.orderby">Nicht Verfügbare</a>
+    <hr />
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            ID
+            <a href="/product/index?field=id&orderby=asc&filter=@ViewBag.filter">↑</a>
+            <a href="/product/index?field=id&orderby=desc&filter=@ViewBag.filter">↓</a>
+        </th>
+        <th>
+            Bild
+        </th>
+        <th>
+            Beschreibung
+            <a href="/product/index?field=des&orderby=asc&filter=@ViewBag.filter">↑</a>
+            <a href="/product/index?field=des&orderby=desc&filter=@ViewBag.filter">↓</a>
+        </th>
+        <th>
+            Preis
+            <a href="/product/index?field=price&orderby=asc&filter=@ViewBag.filter">↑</a>
+            <a href="/product/index?field=price&orderby=desc&filter=@ViewBag.filter">↓</a>
+        </th>
+        <th>
+            Verfügbarkeit 
+            <a href="/product/index?field=avar&orderby=asc&filter=@ViewBag.filter">↑</a>
+            <a href="/product/index?field=avar&orderby=desc&filter=@ViewBag.filter">↓</a>
+            
+        </th>
+        <th>Details | Edit | Editpicture | Delete</th>
+        
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @Html.Raw(item.GetImagePath(25))
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @Html.CheckBox("isActive", item.Availability)
+              
+            </td>
+            <td>
+                <a href="/product/details/@item.Id">Details |</a>
+                <a href="/product/edit/@item.Id"> Edit |</a>
+                <a href="/product/uploadpicture?productId=@item.Id"> Editpicture |</a>
+                <a href="/product/delete/@item.Id"> Delete</a>
+               
+            </td>
+        </tr>
+    }
+</table>
