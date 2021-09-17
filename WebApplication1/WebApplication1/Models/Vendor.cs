@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 
 namespace WebApplication1.Models
 {
+    // Diese Anotation erlaubt es uns ohne Fehler die Referrenzierten Objekte mit abzuspeichern
     // First Reffernece
     // https://stackoverflow.com/questions/7397207/json-net-error-self-referencing-loop-detected-for-type
     // Second Refference

@@ -20,13 +20,14 @@
                 @Html.ActionLink("Anwendungsname", "Index", "Product", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                @* Navbar| Html.ActionLink("Bezeichnung", "View", "Controller") *@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("ProductPage", "Index", "Product")</li>
                     <li>@Html.ActionLink("VendorPage", "Index", "Vendor")</li>
-                    <li>@Html.ActionLink("Bildergalerie","PictureGallery", "Product")</li>
-                    <li>@Html.ActionLink("BildergalerieAlt","PictureGalleryAlt", "Product")</li>
-                    <li>@Html.ActionLink("Teuerste 5 Produkte","TopNProducts", "Product")</li>
-                    <li>@Html.ActionLink("BilderUpload","UploadPicture", "Product")</li>
+                    <li>@Html.ActionLink("Bildergalerie", "PictureGallery", "Product")</li>
+                    <li>@Html.ActionLink("BildergalerieAlt", "PictureGalleryAlt", "Product")</li>
+                    <li>@Html.ActionLink("Teuerste 5 Produkte", "TopNProducts", "Product")</li>
+                    <li>@Html.ActionLink("BilderUpload", "UploadPicture", "Product")</li>
                 </ul>
             </div>
         </div>

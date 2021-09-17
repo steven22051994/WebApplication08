@@ -302,7 +302,7 @@ namespace WebApplication1.Controllers
 
 
         /// <summary>
-        /// Gennerriert eioen Table, übernimmt unsere ImagePaths und springt alle 3 Bilder in eine neue Zeile
+        /// Gennerriert eien Table, übernimmt unsere ImagePaths und springt alle 3 Bilder in eine neue Zeile
         /// </summary>
         /// <returns>Html Table String</returns>
         public string GenerateImageGaleryHTML()
@@ -364,11 +364,32 @@ namespace WebApplication1.Controllers
 
 
 
+        /// <summary>
+        /// Der View zu unserer File-Upload-Page
+        /// Wir müssen ihm eine ID mitgeben damit wir das (in unserem Fall)
+        /// Bild später einem Produkt zuordnen können.
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         public ActionResult UploadPicture(int productId)
         {
             ViewBag.productId = productId;
             return View();
         }
+
+
+        /// <summary>
+        /// Hier Verarbeiten wir die Hochgeladene Datei.
+        /// Wir überprüfen folgende Fälle:
+        /// Ist die Datei Leer?
+        /// Ist das Dateivormat ein jpeg/jpg oder png?
+        /// Wird die von uns festgelegte Maximalgröße nicht überschritten?
+        /// Bei Erfolg Speichern wir das Bild.
+        /// Bei Misserfolg Redirecten wir zur ErrorPage
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         public ActionResult FileUpload(HttpPostedFileBase file, int productId)
         {
             string check = "";
@@ -392,6 +413,6 @@ namespace WebApplication1.Controllers
         }
 
 
-        //SQL Key: PCCF13A9F8CF9F 
+        
     }
 }

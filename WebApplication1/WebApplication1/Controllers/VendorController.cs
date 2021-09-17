@@ -13,10 +13,15 @@ namespace WebApplication1.Controllers
     {
        public static Dictionary<int, Vendor> vendorDictonary = new Dictionary<int, Vendor>();
 
-
-
+        //TODO: Relativen Pfad verwenden? 
+        //Der Pfad wo das Json gespeichert ist
         public static string path = @"D:\VisualStudio2019\WebProgramieren\WebApplication1\WebApplication1\json\vendors.json";
  
+
+        /// <summary>
+        /// Zum auslesen der Json-Datei und dem Updaten
+        /// unseres Vendor-Dic. zur Laufzeit
+        /// </summary>
         public static void Deserilize()
         {
             if (System.IO.File.Exists(path))
@@ -48,7 +53,12 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-       
+       /// <summary>
+       /// In dieser Methode nehmen wir das Vendor Objekt entgegen,
+       /// danach speichern wir es in unserem Vendor-Dic. und rufen danach die Save() auf
+       /// </summary>
+       /// <param name="vendor"></param>
+       /// <returns></returns>
         public ActionResult CreatePost(Vendor vendor)
         {
             vendor.ID = vendorDictonary.Count + 1;

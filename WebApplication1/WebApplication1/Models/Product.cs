@@ -10,12 +10,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.Models
 {
+    // Diese Anotation erlaubt es uns ohne Fehler die Referrenzierten Objekte mit abzuspeichern
+    // First Reffernece
+    // https://stackoverflow.com/questions/7397207/json-net-error-self-referencing-loop-detected-for-type
+    // Second Refference
+    //https://www.newtonsoft.com/json/help/html/preserveobjectreferences.htm
     [JsonObject(IsReference = true)]
     public class Product
     {
 
         public int Id { get; set; }
-
+        // Mit hilfe von Anotationen und REGEX können wir steuern welche Eingabe valide ist.
         [Required(ErrorMessage = "Du musst da was angeben :smh:")]
         [MaxLength(100, ErrorMessage = "Ist zu lang :smh:")]
         [MinLength(2, ErrorMessage = "Ist zu kurz :smh:")]
@@ -24,7 +29,7 @@ namespace WebApplication1.Models
         public decimal Price { get; set; }
 
         public bool Availability { get; set; }
-
+        // TODO: Eigenschaft entfernen und alles über die Methode GetImagePath() laufen lassen
         public string ImagePath
         {
             get
@@ -50,10 +55,7 @@ namespace WebApplication1.Models
             {
                 return $"<img alt={this.Description} height=" + height + " src=/images/"+this.Id+".jpg>";
             }
-
             return $"<img alt={this.Description} height=" + height + " src=/images/default.jpg>";
-
-
         }
 
         public Vendor Vendor { get; set; }
