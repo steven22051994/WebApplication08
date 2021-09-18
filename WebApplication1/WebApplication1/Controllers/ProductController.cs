@@ -20,7 +20,7 @@ namespace WebApplication1.Controllers
 
 
         public static Dictionary<int, Product> productDictionary = new Dictionary<int, Product>();
-        static readonly string path = @"D:\VisualStudio2019\WebProgramieren\WebApplication1\WebApplication1\json\text.json";
+        static readonly string path = @"C:\Users\steve\OneDrive\Desktop\GithubRepos\WebApplication08\WebApplication1\WebApplication1\json\text.json";
         //static int filtered = 0;
 
 
@@ -270,8 +270,9 @@ namespace WebApplication1.Controllers
         /// <param name="price"></param>
         /// <param name="availability"></param>
         /// <returns></returns>
-        public ActionResult EditPost(int id, string description, decimal price, bool? availability)
+        public ActionResult EditPost(int id, string description, string price, bool? availability, HttpPostedFileBase file)
         {
+            FileUpload(file, id);
             if (availability == null)
             {
                 productDictionary[id].Availability = false;
@@ -282,8 +283,12 @@ namespace WebApplication1.Controllers
             }
 
             productDictionary[id].Description = description;
-
-            productDictionary[id].Price = price;
+            price = price.Replace('.', ',');
+            Decimal.TryParse(price, out decimal price2);
+            productDictionary[id].Price = price2;
+           
+         
+           
 
             Helper.Save(path, productDictionary.ToDictionary(x => x.Key, x => (object)x.Value));
 
@@ -323,7 +328,7 @@ namespace WebApplication1.Controllers
 
 
 
-                ausgabe += "<td>" + img.Value.ImagePath + "</td>";
+                ausgabe += "<td>" + img.Value.GetImagePath(100) + "</td>";
                 zaehler++;
             }
 
@@ -402,9 +407,13 @@ namespace WebApplication1.Controllers
 
             if (file != null && file.ContentLength <= 20 * 1024 * 1024 && check == "image/jpeg" || check == "image/png")
             {
-                file.SaveAs($@"D:\VisualStudio2019\WebProgramieren\WebApplication1\WebApplication1\images\{productId}.jpg");
+                file.SaveAs($@"C:\Users\steve\OneDrive\Desktop\GithubRepos\WebApplication08\WebApplication1\WebApplication1\images\{productId}.jpg");
                 return RedirectToAction("index");
             }
+            //else if(System.IO.File.Exists($@"C:\Users\steve\OneDrive\Desktop\GithubRepos\WebApplication08\WebApplication1\WebApplication1\images\{productId}.jpg"))
+            //{
+            //    return RedirectToAction("index");
+            //}
             else
             {
                 return RedirectToAction("Fehler");

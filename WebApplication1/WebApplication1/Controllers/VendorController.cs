@@ -15,7 +15,7 @@ namespace WebApplication1.Controllers
 
         //TODO: Relativen Pfad verwenden? 
         //Der Pfad wo das Json gespeichert ist
-        public static string path = @"D:\VisualStudio2019\WebProgramieren\WebApplication1\WebApplication1\json\vendors.json";
+        public static string path = @"C:\Users\steve\OneDrive\Desktop\GithubRepos\WebApplication08\WebApplication1\WebApplication1\json\vendors.json";
  
 
         /// <summary>

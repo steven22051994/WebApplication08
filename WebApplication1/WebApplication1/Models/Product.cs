@@ -30,29 +30,30 @@ namespace WebApplication1.Models
 
         public bool Availability { get; set; }
         // TODO: Eigenschaft entfernen und alles über die Methode GetImagePath() laufen lassen
-        public string ImagePath
-        {
-            get
-            {
+        //public string ImagePath
+        //{
+        //    get
+        //    {
 
-                string path = $@"D:\VisualStudio2019\WebProgramieren\WebApplication1\WebApplication1\images\{this.Id}.jpg";
-                if (System.IO.File.Exists(path))
-                {
-                    return $"<img alt={this.Description} height=100 src=/images/" + this.Id + ".jpg>";
-                }
+        //        string path = $@"D:\VisualStudio2019\WebProgramieren\WebApplication1\WebApplication1\images\{this.Id}.jpg";
+        //        if (System.IO.File.Exists(path))
+        //        {
+        //            return $"<img alt={this.Description} height=100 src=/images/" + this.Id + ".jpg>";
+        //        }
 
-                return $"<img alt={this.Description} height=100 src=/images/default.jpg>";
+        //        return $"<img alt={this.Description} height=100 src=/images/default.jpg>";
 
-            }
-        }
+        //    }
+        //}
 
 
         public string GetImagePath(int height)
         {
 
-            string path = $@"D:\VisualStudio2019\WebProgramieren\WebApplication1\WebApplication1\images\{this.Id}.jpg";
+            string path = $@"C:\Users\steve\OneDrive\Desktop\GithubRepos\WebApplication08\WebApplication1\WebApplication1\images\{this.Id}.jpg";
             if (System.IO.File.Exists(path))
             {
+                
                 return $"<img alt={this.Description} height=" + height + " src=/images/"+this.Id+".jpg>";
             }
             return $"<img alt={this.Description} height=" + height + " src=/images/default.jpg>";

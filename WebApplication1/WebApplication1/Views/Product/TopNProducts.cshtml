@@ -13,7 +13,7 @@
             @Html.DisplayNameFor(model => model.Availability)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ImagePath)
+            ImmagePath
         </th>
         <th></th>
     </tr>
@@ -30,7 +30,7 @@
             @Html.DisplayFor(modelItem => item.Availability)
         </td>
         <td>
-            @Html.Raw(item.ImagePath);
+            @Html.Raw(item.GetImagePath(100))
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
