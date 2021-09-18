@@ -1,0 +1,7 @@
+Instead of Bootstrap, the Content-Folder shall withhold the Skeleton-Framework.
+TO-DO:
+- Look through Content and Scripts - Folder
+- Get rid of unnecessary files
+- Apply changes to SharedViews and Views, if necessary
+
+Plan B: Simply link skeleton to shared-layout
