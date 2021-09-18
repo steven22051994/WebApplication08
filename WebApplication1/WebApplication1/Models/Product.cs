@@ -25,7 +25,9 @@ namespace WebApplication1.Models
         [MaxLength(100, ErrorMessage = "Ist zu lang :smh:")]
         [MinLength(2, ErrorMessage = "Ist zu kurz :smh:")]
         public string Description { get; set; }
-        [RegularExpression(@"^[0-9]+[,|\.]+([0-9]{1,2})?$", ErrorMessage = "Gültige Zahl angeben")]
+        
+      
+        [RegularExpression(@"^[0-9]*.[0-9]{2}$", ErrorMessage = "Gültige Zahl angeben")]
         public decimal Price { get; set; }
 
         public bool Availability { get; set; }

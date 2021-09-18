@@ -183,19 +183,37 @@ namespace WebApplication1.Controllers
         /// <param name="description"></param>
         /// <param name="price"></param>
         /// <returns></returns>
-        public ActionResult CreatePost(string description, decimal price, int vendorId)
+        public ActionResult CreatePost(string description, string price, int vendorId , HttpPostedFileBase file)
+        {
+            price = price.Replace('.', ',');
+            Decimal.TryParse(price, out decimal price2);
+            GenerateProduct(description, price2, vendorId);          
+            Helper.Save(path, productDictionary.ToDictionary(x => x.Key, x => (object)x.Value));
+            Helper.Save(VendorController.path, VendorController.vendorDictonary.ToDictionary(x => x.Key, x => (object)x.Value));
+            // Das Bild darf erst Gesetzt werden nachdem das Produkt Gespeichert ist
+            // Ansonnsten findet er die ID Des Produktes nicht
+            FileUpload(file, productDictionary.Count);
+            return RedirectToAction("index");
+        }
+
+
+
+        /// <summary>
+        /// Anlegen eines neuen Produkts
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="price"></param>
+        /// <param name="vendorId"></param>
+        public void GenerateProduct (string description, decimal price, int vendorId)
         {
             Product p = new Product();
-            p.Id = productDictionary.Count + 1; // Um eines erhöht nachdem er zugewiesen wurde
+            p.Id = productDictionary.Count + 1;// Um eines erhöht nachdem er zugewiesen wurde
             p.Description = description;
             p.Price = price;
             p.Availability = true;
             productDictionary.Add(p.Id, p);
             p.Vendor = VendorController.vendorDictonary[vendorId];
             VendorController.vendorDictonary[vendorId].ProductList.Add(p);
-            Helper.Save(path, productDictionary.ToDictionary(x => x.Key, x => (object)x.Value));
-            Helper.Save(VendorController.path, VendorController.vendorDictonary.ToDictionary(x => x.Key, x => (object)x.Value));
-            return RedirectToAction("index");
         }
 
         /// <summary>
