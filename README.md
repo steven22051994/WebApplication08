@@ -21,7 +21,9 @@ TO-DO Chrissemann:
 
 
 TO-DO Steven:
-- Price-Validation @Create does not Accept ',' / View depends on RegularExpresion Regardless if its Active or not
 - Image for Vendors 
 - Relative Path's
 - Update Errormessage-View with additional Information to the Error that Occurs
+
+BUGS:
+- Price-Validation @Create does not Accept ',' / View depends on RegularExpresion Regardless if its Active or not
