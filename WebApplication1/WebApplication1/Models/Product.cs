@@ -52,7 +52,7 @@ namespace WebApplication1.Models
         public string GetImagePath(int height)
         {
 
-            string path = $@"C:\Users\steve\OneDrive\Desktop\GithubRepos\WebApplication08\WebApplication1\WebApplication1\images\{this.Id}.jpg";
+            string path = $@"D:\VisualStudio2019\WebProgramieren\WebApplication08\WebApplication1\WebApplication1\images\{this.Id}.jpg";
             if (System.IO.File.Exists(path))
             {
                 

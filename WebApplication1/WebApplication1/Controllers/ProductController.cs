@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using WebApplication1.Views.Tools;
 using System.Drawing;
+using Rotativa;
 
 namespace WebApplication1.Controllers
 {
@@ -20,7 +21,7 @@ namespace WebApplication1.Controllers
 
 
         public static Dictionary<int, Product> productDictionary = new Dictionary<int, Product>();
-        static readonly string path = @"C:\Users\steve\OneDrive\Desktop\GithubRepos\WebApplication08\WebApplication1\WebApplication1\json\text.json";
+        static readonly string path = @"D:\VisualStudio2019\WebProgramieren\WebApplication08\WebApplication1\WebApplication1\json\text.json";
         //static int filtered = 0;
 
 
@@ -416,18 +417,21 @@ namespace WebApplication1.Controllers
         public ActionResult FileUpload(HttpPostedFileBase file, int productId)
         {
             string check = "";
-            
+   
+
             if (file != null)
             {
                 check = file.ContentType;
 
             }
 
-            if (file != null && file.ContentLength <= 20 * 1024 * 1024 && check == "image/jpeg" || check == "image/png")
+            if (file != null && file.ContentLength <= 20 * 1024 * 1024 && file.ContentType.Contains("image") && (check == "image/jpeg" || check == "image/png"))
             {
-                file.SaveAs($@"C:\Users\steve\OneDrive\Desktop\GithubRepos\WebApplication08\WebApplication1\WebApplication1\images\{productId}.jpg");
+                file.SaveAs($@"D:\VisualStudio2019\WebProgramieren\WebApplication08\WebApplication1\WebApplication1\images\{productId}.jpg");
+               
                 return RedirectToAction("index");
             }
+            
             //else if(System.IO.File.Exists($@"C:\Users\steve\OneDrive\Desktop\GithubRepos\WebApplication08\WebApplication1\WebApplication1\images\{productId}.jpg"))
             //{
             //    return RedirectToAction("index");
@@ -440,6 +444,26 @@ namespace WebApplication1.Controllers
         }
 
 
-        
+
+        /// <summary>
+        /// https://stackoverflow.com/questions/43230623/rotativa-html-to-pdf-on-asp-net-mvc-how-to-create-pdf-as-a-landscape
+        /// Speichert ein PDF an der unter MapPath angegebenen Adresse mit dem Namen den wir ihm übergeben haben // Theoretisch
+        /// im AchtinAsPdf() geben wir an was wir als PDF haben wollen
+        /// </summary>
+        /// <returns> Ein PDF</returns>
+        public ActionResult Exportaspdf()
+        {
+            // Soll noch einen Parameter annehmen indem ich bestimme welche seite ich als PDF haben will
+            return new ActionAsPdf("index")
+            {
+                FileName = "index"+DateTime.Now.Ticks+".pdf",
+                PageSize = Rotativa.Options.Size.A4,
+                PageOrientation = Rotativa.Options.Orientation.Landscape
+            };
+        }
+
+
+
+
     }
 }

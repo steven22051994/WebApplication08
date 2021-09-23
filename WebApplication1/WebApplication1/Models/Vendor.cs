@@ -15,6 +15,7 @@ namespace WebApplication1.Models
     [JsonObject(IsReference = true)] 
     public class Vendor
     {
+
         public int ID { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
