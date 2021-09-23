@@ -9,14 +9,14 @@ using WebApplication1.Views.Tools;
 
 namespace WebApplication1.Controllers
 {
-    public class VendorController :  Controller 
+    public class VendorController : Controller
     {
-       public static Dictionary<int, Vendor> vendorDictonary = new Dictionary<int, Vendor>();
+        public static Dictionary<int, Vendor> vendorDictonary = new Dictionary<int, Vendor>();
 
         //TODO: Relativen Pfad verwenden? 
         //Der Pfad wo das Json gespeichert ist
         public static string path = @"D:\VisualStudio2019\WebProgramieren\WebApplication08\WebApplication1\WebApplication1\json\vendors.json";
- 
+
 
         /// <summary>
         /// Zum auslesen der Json-Datei und dem Updaten
@@ -24,6 +24,7 @@ namespace WebApplication1.Controllers
         /// </summary>
         public static void Deserilize()
         {
+            //TODO: Parameterisieren und in die Helper Klasse auslagern !
             if (System.IO.File.Exists(path))
             {
                 string jsonstring = System.IO.File.ReadAllText(path);
@@ -31,7 +32,7 @@ namespace WebApplication1.Controllers
             }
 
         }
-  
+
         // Index der Vendors
         public ActionResult Index()
         {
@@ -53,12 +54,12 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-       /// <summary>
-       /// In dieser Methode nehmen wir das Vendor Objekt entgegen,
-       /// danach speichern wir es in unserem Vendor-Dic. und rufen danach die Save() auf
-       /// </summary>
-       /// <param name="vendor"></param>
-       /// <returns></returns>
+        /// <summary>
+        /// In dieser Methode nehmen wir das Vendor Objekt entgegen,
+        /// danach speichern wir es in unserem Vendor-Dic. und rufen danach die Save() auf
+        /// </summary>
+        /// <param name="vendor"></param>
+        /// <returns></returns>
         public ActionResult CreatePost(Vendor vendor)
         {
             vendor.ID = vendorDictonary.Count + 1;
@@ -106,6 +107,7 @@ namespace WebApplication1.Controllers
         }
 
         // TODO: Vendor Image import 
+        // TODO: Wir werden die Methode zum abspeichern ebenfalls Parametisieren und danach in die Helper Klasse auslagern.
         
     }
 }

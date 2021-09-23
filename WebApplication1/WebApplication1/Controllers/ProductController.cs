@@ -21,12 +21,12 @@ namespace WebApplication1.Controllers
 
 
         public static Dictionary<int, Product> productDictionary = new Dictionary<int, Product>();
+        //TODO: Relativen Pfad Verwenden !!! 
         static readonly string path = @"D:\VisualStudio2019\WebProgramieren\WebApplication08\WebApplication1\WebApplication1\json\text.json";
-        //static int filtered = 0;
 
 
 
-
+            //TODO: Kann Parametisiert werden und in die Helper Klasse ausgelagert werden
         public static void Deserilize()
         {
             if (System.IO.File.Exists(path))
@@ -161,6 +161,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        // FIXME: Kann Entfernt werden ? Bzw kann ausgelagerd werden, hat hier nichts zu suchen.
         public string VendorList()
         {
             string done = "";
@@ -208,7 +209,8 @@ namespace WebApplication1.Controllers
         public void GenerateProduct (string description, decimal price, int vendorId)
         {
             Product p = new Product();
-            p.Id = productDictionary.Count + 1;// Um eines erhöht nachdem er zugewiesen wurde
+            p.Id = productDictionary.Count + 1;// Um eines erhöht nachdem er zugewiesen wurde 
+            // FIXME: Den Count auslagern als statische Variable
             p.Description = description;
             p.Price = price;
             p.Availability = true;
@@ -257,6 +259,7 @@ namespace WebApplication1.Controllers
         /// /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// //TODO: Kann man evtl entweder durch eine Methode ersetzen die den Artikel wirklich löscht oder verstecken falls es ausgeblendet wird 
         public ActionResult Delete(int id)
         {
             productDictionary[id].Availability = false;
@@ -292,6 +295,7 @@ namespace WebApplication1.Controllers
         public ActionResult EditPost(int id, string description, string price, bool? availability, HttpPostedFileBase file)
         {
             FileUpload(file, id);
+        // TODO: Kann vereinfacht werden
             if (availability == null)
             {
                 productDictionary[id].Availability = false;
@@ -329,6 +333,8 @@ namespace WebApplication1.Controllers
         /// Gennerriert eien Table, übernimmt unsere ImagePaths und springt alle 3 Bilder in eine neue Zeile
         /// </summary>
         /// <returns>Html Table String</returns>
+        ///
+        //TEMP: Kann evtl removed werden, gibt keinen Mehrwert gegenüber der Eigenschaft von Product
         public string GenerateImageGaleryHTML()
         {
             string ausgabe = "<table>";
@@ -372,6 +378,8 @@ namespace WebApplication1.Controllers
         /// Gibt die ersten 5 Produkte aus. (Hardcodet)
         /// </summary>
         /// <returns></returns>
+        /// 
+        // TODO: Parametisieren ?!?!
         public ActionResult TopNProducts()
         {
             int count = 5;
@@ -424,6 +432,7 @@ namespace WebApplication1.Controllers
                 check = file.ContentType;
 
             }
+            //FIXME: Es können noch immer Dateien mit falscher Endung gesendet werden => Könnte zu InvalidCastExceptions führen
 
             if (file != null && file.ContentLength <= 20 * 1024 * 1024 && file.ContentType.Contains("image") && (check == "image/jpeg" || check == "image/png"))
             {
@@ -452,6 +461,7 @@ namespace WebApplication1.Controllers
         /// </summary>
         /// <returns> Ein PDF</returns>
         public ActionResult Exportaspdf(int productId)
+            //TODO: Generisch machen mittels weitern übergabeparameter für die zu verwendede View ? 
         {
             string productname = productDictionary[productId].Description;
        

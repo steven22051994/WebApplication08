@@ -132,6 +132,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ProductVendorViewModel.cs" />
     <Compile Include="Views\Tools\Helper.cs" />
   </ItemGroup>
   <ItemGroup>
