@@ -451,12 +451,13 @@ namespace WebApplication1.Controllers
         /// im AchtinAsPdf() geben wir an was wir als PDF haben wollen
         /// </summary>
         /// <returns> Ein PDF</returns>
-        public ActionResult Exportaspdf()
+        public ActionResult Exportaspdf(int productId)
         {
-            // Soll noch einen Parameter annehmen indem ich bestimme welche seite ich als PDF haben will
-            return new ActionAsPdf("index")
+            string productname = productDictionary[productId].Description;
+       
+            return new ActionAsPdf("Details",new { id = productId})
             {
-                FileName = "index"+DateTime.Now.Ticks+".pdf",
+                FileName = "details" + productname + ".pdf",
                 PageSize = Rotativa.Options.Size.A4,
                 PageOrientation = Rotativa.Options.Orientation.Landscape
             };
